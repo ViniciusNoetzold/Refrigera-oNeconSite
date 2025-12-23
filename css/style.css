@@ -1,9 +1,9 @@
 :root {
-    /* Paleta Principal */
+    /* Paleta Principal Atualizada (Neon) */
     --blue-dark: #1F2A44;     
     --blue-medium: #2F3E6C;   
-    --red-main: #C62828;      
-    --red-hover: #B71C1C;     
+    --red-main: #ff3333;      /* Vermelho Neon Vibrante */
+    --red-hover: #ff6666;     /* Vermelho mais claro para hover */
     
     /* Neutros */
     --white: #FFFFFF;
@@ -37,33 +37,59 @@ body { background-color: var(--white); color: var(--text-dark); line-height: 1.6
 
 /* --- HEADER --- */
 header {
-    background-color: var(--blue-dark); padding: 15px 0;
+    background-color: var(--blue-dark); 
+    padding: 15px 0; /* Reduzi de 15px para 5px */
     position: sticky; top: 0; z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 .header-container { display: flex; justify-content: space-between; align-items: center; }
 
-/* Logo com animação aplicada */
 .main-logo { 
-    /* Aumente este valor aqui (ex: de 60px para 90px) */
-    height: 90px; 
-    
+    height: 40px; /* Altura menor para não esticar o cabeçalho */
     width: auto; 
     display: block; 
+    /* A animação agora vai cuidar do zoom também */
     animation: gentle-rocking 4s ease-in-out infinite;
 }
 
+/* --- Menu de Navegação (Mais visível e bonito) --- */
 .desktop-nav a {
-    color: #ccc; text-decoration: none; margin: 0 15px; font-weight: 500; transition: 0.3s;
+    color: var(--white);      /* Branco puro (era cinza) */
+    text-decoration: none; 
+    margin: 0 20px;           /* Mais espaçado */
+    font-weight: 700;         /* Fonte mais grossa */
+    font-size: 1.1rem;        /* Letra maior */
+    text-transform: uppercase;
+    transition: 0.3s;
+    position: relative;
 }
-.desktop-nav a:hover { color: var(--white); }
 
-.btn-outline {
-    border: 1px solid rgba(255,255,255,0.3); color: white;
-    padding: 8px 16px; border-radius: 4px; text-decoration: none;
-    font-weight: 500; transition: 0.3s;
+.desktop-nav a:hover { 
+    color: var(--red-main); 
+    /* Efeito de luz quando passa o mouse */
+    text-shadow: 0 0 15px rgba(255, 51, 51, 0.8); 
 }
-.btn-outline:hover { border-color: var(--red-main); background-color: var(--red-main); }
+
+/* --- Botão do Telefone (Estilo Neon) --- */
+.btn-outline {
+    background: rgba(255, 255, 255, 0.05); /* Fundo levemente visível */
+    border: 2px solid var(--red-main);     /* Borda Vermelha Neon */
+    color: white;
+    padding: 10px 25px;       /* Botão maior */
+    border-radius: 50px;      /* Bem redondo */
+    text-decoration: none;
+    font-weight: 700; 
+    transition: 0.3s;
+    /* Brilho suave constante */
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.2);
+}
+.btn-outline:hover { 
+    background-color: var(--red-main); 
+    border-color: var(--red-main);
+    /* Brilho forte no hover */
+    box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); 
+    transform: scale(1.05); /* Cresce um pouquinho */
+}
 
 /* --- HERO --- */
 .hero {
@@ -80,12 +106,59 @@ header {
 .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 20px; }
 
 .tagline {
-    background: rgba(255,255,255,0.1); color: var(--red-main);
-    padding: 5px 15px; border-radius: 20px; font-weight: 700;
-    display: inline-block; margin-bottom: 15px; font-size: 0.9rem;
+    /* Tamanho e Espaçamento */
+    font-size: 1.1rem;       /* Maior (era 0.9rem) */
+    padding: 12px 30px;      /* Mais "gordinho" */
+    margin-bottom: 25px;
+    letter-spacing: 3px;     /* Espaçamento entre letras (efeito cinema) */
+    
+    /* Cores e Visual */
+    background: rgba(31, 42, 68, 0.85); /* Fundo azul escuro semi-transparente */
+    color: #ff3333;          /* Texto branco para leitura perfeita */
+    border: 2px solid var(--red-main); /* Borda vermelha forte */
+    
+    /* Forma e Estilo */
+    border-radius: 50px;     /* Formato de pílula arredondada */
+    font-weight: 900;        /* Fonte bem grossa */
+    text-transform: uppercase;
+    display: inline-block;
+    
+    /* Efeitos Especiais (Brilho/Neon) */
+    box-shadow: 0 0 20px rgba(198, 40, 40, 0.5); /* Luz vermelha em volta */
+    backdrop-filter: blur(5px); /* Desfoque moderno no fundo */
 }
-.hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
-.hero p { font-size: 1.25rem; color: #e0e0e0; margin-bottom: 40px; }
+/* --- Título Principal (Impactante) --- */
+.hero h1 {
+    font-size: 4rem;           /* Bem grande (era 3.5rem) */
+    font-weight: 900;          /* Extra grosso */
+    line-height: 1.1;          /* Linhas mais próximas (estilo poster) */
+    margin-bottom: 25px;
+    color: var(--white);
+    
+    /* Sombra preta forte para destacar do fundo */
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); 
+    
+    /* Opcional: Deixar tudo maiúsculo para ficar "Parrudo" */
+    /* text-transform: uppercase; */ 
+}
+
+/* --- Texto de Apoio (Mais legível) --- */
+.hero p {
+    font-size: 1.5rem;         /* Aumentado (era 1.25rem) */
+    font-weight: 500;          /* Letra mais encorpada */
+    color: #ffffff;            /* Branco puro para brilhar */
+    margin-bottom: 45px;       /* Mais espaço antes dos botões */
+    line-height: 1.6;
+    
+    /* Garante que dê para ler mesmo se a foto de fundo for clara */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    
+    /* Centraliza e limita a largura para não ficar uma linha muito comprida */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .hero-buttons { display: flex; gap: 15px; justify-content: center; }
 
 /* --- BOTÕES --- */
@@ -103,84 +176,585 @@ header {
 }
 .btn-secondary:hover { background-color: var(--white); color: var(--blue-dark); }
 
-/* --- FEATURES --- */
+/* --- FEATURES (Novo Design Grid 3x2) --- */
 .features-section {
-    padding: 40px 0; background-color: var(--white); margin-top: -60px;
-    position: relative; z-index: 10;
+    padding: 60px 0; 
+    background-color: var(--white); 
+    /* Removemos a margem negativa para organizar melhor o layout novo */
+    margin-top: 0; 
+    position: relative; 
+    z-index: 10;
 }
-.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+
+.features-grid { 
+    display: grid; 
+    /* Cria colunas automáticas (mínimo de 300px cada) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+}
+
 .feature-item {
-    background: white; padding: 30px; border-radius: 10px; text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s;
-}
-.feature-item:hover { transform: translateY(-5px); }
-.icon-circle {
-    width: 60px; height: 60px; background-color: var(--gray-light); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
-    color: var(--red-main); font-size: 1.5rem;
+    background: white; 
+    padding: 40px 30px; 
+    border-radius: 15px; /* Bordas mais arredondadas */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Sombra suave inicial */
+    border-bottom: 4px solid transparent; /* Prepara para a borda colorida */
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* --- SOBRE (CORREÇÃO IMAGEM) --- */
-.about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.about-image-wrapper { position: relative; text-align: center; }
+/* Efeito ao passar o mouse (Hover) */
+.feature-item:hover { 
+    transform: translateY(-10px); /* Sobe o cartão */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+    border-bottom-color: var(--red-main); /* Aparece a linha vermelha neon */
+}
 
-/* TRAVA DE SEGURANÇA PARA O JOINHA NÃO FICAR GIGANTE */
+/* Ícone */
+.icon-box {
+    width: 70px; 
+    height: 70px; 
+    background-color: rgba(31, 42, 68, 0.05); /* Fundo cinza azulado bem leve */
+    border-radius: 50%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0 auto 25px;
+    color: var(--blue-dark); /* Ícone azul escuro originalmente */
+    font-size: 1.8rem;
+    transition: 0.4s;
+}
+
+/* Quando passa o mouse no cartão, o ícone muda de cor */
+.feature-item:hover .icon-box {
+    background-color: var(--red-main); /* Fundo vira vermelho */
+    color: white; /* Ícone vira branco */
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.5); /* Brilho neon no ícone */
+}
+
+.feature-item h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin-bottom: 15px;
+}
+
+.feature-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- SOBRE (Redesign Moderno) --- */
+.about-content { 
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; /* Coluna do texto um pouco mais larga */
+    gap: 60px; 
+    align-items: center; 
+}
+
+/* Área da Imagem */
+.about-image-wrapper { 
+    position: relative; 
+    text-align: center;
+    /* Um fundo sutil para destacar o logo do fundo branco da página */
+    padding: 20px;
+}
+
 .about-image-wrapper img {
     max-width: 100%;
-    height: auto;
-    max-height: 250px; 
-    object-fit: contain;
+    
+    /* Mude de 'height: auto' para definir um limite máximo */
+    max-height: 250px; /* Tente 180px ou 200px para ficar menor */
+    
+    width: auto; /* Garante que a largura se ajuste à altura */
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    transition: transform 0.5s;
+    
+    /* Garante que a imagem fique centralizada */
+    display: inline-block;
 }
 
+/* Efeito suave ao passar o mouse no logo */
+.about-image-wrapper:hover img {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+/* Selo "Desde Sempre" Estilizado */
 .experience-badge {
-    position: absolute; bottom: 10px; right: 10px; background: var(--red-main);
-    color: white; padding: 10px 20px; border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(198, 40, 40, 0.4); text-align: center;
+    position: absolute; 
+    
+    /* Movemos mais para baixo e para a direita para sair de cima do logo */
+    bottom: -20px; 
+    right: -15px; 
+    
+    background: linear-gradient(135deg, var(--red-main), #b71c1c); 
+    color: white; 
+    
+    /* Reduzi o tamanho (era 15px 30px) para ficar proporcional ao logo menor */
+    padding: 8px 20px; 
+    
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(198, 40, 40, 0.4); 
+    border: 3px solid white; /* Borda um pouco mais fina */
+    text-align: center;
+    transform: rotate(-5deg); 
+    z-index: 5;
+    transition: 0.3s;
 }
+
+.experience-badge span:first-child {
+    font-size: 0.7rem !important; /* "DESDE" menorzinho */
+}
+.experience-badge span:last-child {
+    font-size: 1rem !important;   /* "SEMPRE" menorzinho */
+}
+
+.experience-badge:hover {
+    transform: rotate(0deg) scale(1.1); 
+    z-index: 10; /* Garante que fique por cima de tudo ao passar o mouse */
+}
+
+/* Texto */
+.about-text h4.sub-title {
+    color: var(--red-main);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--red-main); /* Linha vermelha embaixo */
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.about-text h2.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Lista Transformada em Cartões */
 .check-list { list-style: none; margin-top: 25px; }
-.check-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
-.check-list i { color: var(--red-main); }
 
-/* --- SERVIÇOS --- */
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.check-list li { 
+    background: #fff;
+    padding: 15px 20px;
+    margin-bottom: 15px; 
+    border-radius: 8px;
+    /* Sombra leve e borda cinza bem fina */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03); 
+    border: 1px solid var(--gray-medium);
+    border-left: 5px solid var(--red-main); /* Faixa vermelha na lateral esquerda */
+    
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    font-weight: 600; 
+    color: var(--blue-dark);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Efeito ao passar o mouse nos itens da lista */
+.check-list li:hover {
+    transform: translateX(10px); /* O item "anda" para a direita */
+    box-shadow: 0 5px 20px rgba(198, 40, 40, 0.15); /* Sombra vermelha suave */
+    border-color: var(--red-main);
+}
+
+.check-list i { 
+    color: var(--red-main);
+    font-size: 1.2rem;
+}
+
+/* --- SERVIÇOS (Redesign Premium) --- */
+.services-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px; 
+}
+
+/* O Cartão em si */
 .card.service-card {
-    background: white; padding: 40px 30px; border-radius: 12px;
-    border: 1px solid var(--gray-medium); transition: 0.3s;
+    background: white; 
+    padding: 40px 30px; 
+    border-radius: 16px; /* Bordas bem arredondadas */
+    
+    /* Remove a borda antiga e usa sombra para profundidade */
+    border: none; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    
+    position: relative;
+    overflow: hidden; /* Garante que nada saia do cartão */
+    transition: all 0.4s ease;
+    text-align: center; /* Centraliza tudo para ficar mais bonito */
 }
-.service-card:hover { border-color: var(--blue-medium); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-.card-icon { font-size: 2.5rem; color: var(--blue-dark); margin-bottom: 20px; }
-.service-card h3 { color: var(--red-main); font-size: 1.5rem; margin-bottom: 10px; }
-.service-list { list-style: none; border-top: 1px solid var(--gray-medium); padding-top: 20px; }
-.service-list li { margin-bottom: 8px; position: relative; padding-left: 15px; font-size: 0.9rem; }
-.service-list li::before { content: '•'; color: var(--red-main); position: absolute; left: 0; font-weight: bold; }
 
-/* --- ALERTA --- */
+/* Efeito ao passar o mouse no cartão */
+.service-card:hover { 
+    transform: translateY(-12px); /* Sobe bastante */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
+}
+
+/* Faixa decorativa no topo que aparece no hover */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 5px;
+    background: var(--gray-medium); /* Cinza padrão */
+    transition: 0.4s;
+}
+
+.service-card:hover::before {
+    background: var(--red-main); /* Vira vermelho neon no hover */
+    height: 5px;
+    box-shadow: 0 0 15px var(--red-main); /* Brilho neon no topo */
+}
+
+/* O Ícone (Agora dentro de um círculo) */
+.card-icon { 
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px; /* Centralizado */
+    background: rgba(31, 42, 68, 0.05); /* Azul bem clarinho no fundo */
+    border-radius: 50%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 2.5rem; 
+    color: var(--blue-dark); 
+    transition: 0.4s;
+}
+
+/* Ícone muda de cor no hover */
+.service-card:hover .card-icon {
+    background: var(--red-main); /* Fundo vermelho */
+    color: white; /* Ícone branco */
+    transform: rotateY(180deg); /* Um giro 3D estiloso */
+    box-shadow: 0 10px 20px rgba(198, 40, 40, 0.3);
+}
+
+/* Título do Serviço */
+.service-card h3 { 
+    color: var(--blue-dark); 
+    font-size: 1.6rem; 
+    font-weight: 800;
+    margin-bottom: 20px; 
+    transition: 0.3s;
+}
+
+.service-card:hover h3 {
+    color: var(--red-main); /* Título também fica vermelho */
+}
+
+/* Lista de Serviços */
+.service-list { 
+    list-style: none; 
+    border-top: 1px solid var(--gray-medium); 
+    padding-top: 25px; 
+    text-align: left; /* Lista alinhada à esquerda para leitura */
+    padding-left: 10px; /* Pequeno recuo */
+}
+
+.service-list li { 
+    margin-bottom: 12px; 
+    position: relative; 
+    padding-left: 25px; 
+    font-size: 1rem; 
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* O "pontinho" da lista agora é um check estilizado */
+.service-list li::before { 
+    content: '\f00c'; /* Código do ícone de Check do FontAwesome */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    
+    color: var(--red-main); 
+    position: absolute; 
+    left: 0; 
+    top: 1px;
+    font-size: 0.9rem;
+}
+
+/* --- ALERTA (Redesign Neon) --- */
 .focus-box {
-    margin-top: 60px; background: white; border-radius: 12px; padding: 30px;
-    border-left: 5px solid var(--blue-dark); box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin-top: 60px; 
+    background: #fff0f0; /* Fundo vermelho bem clarinho */
+    border-radius: 15px; 
+    padding: 30px;
+    /* Borda vermelha tracejada para indicar restrição/alerta */
+    border: 2px dashed var(--red-main); 
+    box-shadow: 0 10px 25px rgba(198, 40, 40, 0.08);
+    text-align: center; /* Centralizado fica mais elegante */
 }
-.tags-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+
+.focus-box h4 {
+    color: var(--red-main);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.focus-box p {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+.tags-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 12px; 
+    justify-content: center; /* Tags centralizadas */
+}
+
 .tag-alert {
-    background: #FFF3E0; color: #E65100; padding: 5px 12px;
-    border-radius: 20px; font-size: 0.85rem; font-weight: 500;
+    background: white; 
+    color: var(--red-main); 
+    padding: 8px 20px;
+    border-radius: 50px; 
+    font-size: 0.9rem; 
+    font-weight: 700;
+    
+    /* Borda e sombra sutis */
+    border: 1px solid #ffcccc;
+    box-shadow: 0 2px 5px rgba(198, 40, 40, 0.1);
+    transition: 0.3s;
 }
 
-/* --- FAQ --- */
-.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.faq-item { background: var(--gray-light); padding: 25px; border-radius: 8px; }
-.faq-item h4 { color: var(--blue-dark); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.tag-alert:hover {
+    background: var(--red-main);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+}
 
-/* --- LOCALIZAÇÃO --- */
-.location-section { background-color: var(--blue-dark); color: white; }
-.location-wrapper { display: flex; flex-wrap: wrap; }
-.location-text { flex: 1; padding: 80px 40px 80px 0; }
-.address-big, .phone-big { font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
-.map-container { flex: 1; min-height: 400px; }
-.map-container iframe { width: 100%; height: 100%; }
+/* --- FAQ (Redesign Moderno) --- */
+.faq-grid { 
+    display: grid; 
+    /* Cria colunas largas e responsivas */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 30px; 
+}
 
-/* --- FOOTER --- */
-footer { background-color: #151d30; color: #8892b0; padding: 40px 0; text-align: center; }
-.footer-logo h3 { color: white; font-size: 1.5rem; letter-spacing: 2px; }
+.faq-item { 
+    background: white; 
+    padding: 30px; 
+    border-radius: 15px; 
+    
+    /* Layout Flex: Ícone na esquerda, Texto na direita */
+    display: flex;
+    align-items: flex-start; /* Alinha no topo */
+    gap: 20px;
+    
+    /* Visual do Cartão */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+    border: 1px solid var(--gray-medium);
+    transition: all 0.3s ease;
+}
+
+/* Efeito Hover no Cartão */
+.faq-item:hover {
+    transform: translateY(-5px); /* Sobe um pouquinho */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-color: var(--red-main); /* Borda fica vermelha */
+}
+
+/* O Ícone (Bolinha) */
+.faq-icon {
+    min-width: 60px; /* Tamanho fixo */
+    height: 60px;
+    background: #fff0f0; /* Fundo vermelho bem clarinho */
+    color: var(--red-main); /* Ícone vermelho */
+    border-radius: 50%; /* Redondo */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    transition: 0.3s;
+}
+
+/* Efeito Hover no Ícone (Acende e Gira) */
+.faq-item:hover .faq-icon {
+    background: var(--red-main); /* Fundo fica vermelho neon */
+    color: white; /* Ícone fica branco */
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.5); /* Brilho neon */
+    transform: rotate(10deg); /* Charmoso giro */
+}
+
+/* Textos */
+.faq-content h4 { 
+    color: var(--blue-dark); 
+    font-size: 1.15rem; 
+    font-weight: 800;
+    margin-bottom: 8px; 
+}
+
+.faq-content p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- LOCALIZAÇÃO (Redesign Premium) --- */
+.location-section { 
+    background-color: var(--blue-dark); 
+    color: white; 
+    position: relative;
+    padding: 80px 0;
+    /* Adiciona uma textura sutil ou gradiente para não ficar chapado */
+    background: linear-gradient(to right, var(--blue-dark), #161e31);
+}
+
+.location-wrapper { 
+    display: flex; 
+    flex-wrap: wrap; 
+    align-items: center; 
+    gap: 50px; 
+}
+
+.location-text { 
+    flex: 1; 
+    min-width: 300px;
+}
+
+.location-text h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    font-weight: 900;
+}
+
+/* Caixa de informações de contato */
+.contact-info-box {
+    margin-bottom: 30px;
+}
+
+.address-big, .phone-big { 
+    font-size: 1.3rem; 
+    margin-bottom: 25px; 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    color: #e0e0e0;
+}
+
+/* Ícones Brilhantes */
+.icon-glow {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 51, 51, 0.1); /* Fundo vermelho transparente */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red-main);
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.2); /* Brilho neon */
+    transition: 0.3s;
+}
+
+/* Efeito ao passar o mouse no endereço/telefone */
+.address-big:hover .icon-glow, 
+.phone-big:hover .icon-glow {
+    background: var(--red-main);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 51, 51, 0.6);
+}
+
+/* Mapa Estilizado */
+.map-container { 
+    flex: 1.2; 
+    height: 400px; 
+    min-width: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    /* Sombra grossa para destacar do fundo */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    border: 5px solid rgba(255,255,255,0.05); /* Borda sutil */
+}
+
+.map-container iframe { 
+    width: 100%; 
+    height: 100%; 
+    border: 0; 
+    /* Filtro para deixar o mapa um pouco menos "aceso" e combinar com o site dark 
+       (opcional, se não gostar pode remover essa linha 'filter') */
+    filter: contrast(1.1) saturate(0.8);
+}
+
+/* --- FOOTER (Rodapé Profissional) --- */
+footer { 
+    background-color: #0d121d; /* Quase preto */
+    color: #8892b0; 
+    padding: 50px 0 30px; 
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.footer-logo h3 { 
+    color: white; 
+    font-size: 2rem; 
+    font-weight: 900; 
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+/* Linha decorativa vermelha embaixo do logo */
+.footer-line {
+    width: 60px;
+    height: 4px;
+    background: var(--red-main);
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--red-main);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.social-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    color: var(--red-main);
+    transform: translateY(-3px);
+}
 
 /* --- RESPONSIVO --- */
 @media (max-width: 768px) {
@@ -197,6 +771,77 @@ footer { background-color: #151d30; color: #8892b0; padding: 40px 0; text-align:
     .address-big, .phone-big { justify-content: center; }
 }
 
+/* --- ESTILO DOS CONTATOS TÉCNICOS (RODAPÉ) --- */
+.tech-contacts-section {
+    margin: 40px 0;
+    width: 100%;
+}
+
+.tech-title {
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.tech-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Garante que quebra linha no celular */
+}
+
+/* O Cartão do Técnico */
+.tech-card {
+    background: rgba(255, 255, 255, 0.03); /* Fundo quase transparente */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Borda sutil */
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    text-align: left;
+    min-width: 300px;
+    transition: 0.3s;
+}
+
+/* Efeito Hover (Fica com borda vermelha) */
+.tech-card:hover {
+    background: rgba(37, 211, 102, 0.05); /* Leve toque verde do Whats */
+    border-color: #25D366;
+    transform: translateY(-5px);
+}
+
+.tech-icon {
+    font-size: 2rem;
+    color: #25D366; /* Ícone verde do WhatsApp */
+}
+
+.tech-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tech-info strong {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.tech-info span {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+}
+
+.tech-info small {
+    color: var(--red-main); /* Número em vermelho neon */
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
 /* --- ANIMAÇÕES --- */
 
 .pulse-anim { animation: pulse 2s infinite; }
@@ -208,7 +853,16 @@ footer { background-color: #151d30; color: #8892b0; padding: 40px 0; text-align:
 
 /* Animação de Balanço Suave para o Logo */
 @keyframes gentle-rocking {
-    0% { transform: translateX(-3px); }
-    50% { transform: translateX(3px); }
-    100% { transform: translateX(-3px); }
+    0% { 
+        /* Agora move 10px para esquerda (era 3px) */
+        transform: translateX(-10px) scale(1.5); 
+    }
+    50% { 
+        /* Agora move 10px para direita (era 3px) */
+        transform: translateX(10px) scale(1.5); 
+    }
+    100% { 
+        /* Retorna */
+        transform: translateX(-10px) scale(1.5); 
+    }
 }
