@@ -1,28 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Atualizar o ano no rodapé automaticamente
+    // Atualiza Ano Automaticamente
     const yearSpan = document.getElementById('current-year');
     if(yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // 2. Comportamento do botão "WhatsApp em breve"
+    // Botão WhatsApp (Aviso temporário)
     const btnWhats = document.getElementById('btn-whats-aviso');
-    
     if(btnWhats) {
         btnWhats.addEventListener('click', () => {
-            alert("O WhatsApp do escritório estará disponível em breve! \n\nPor favor, ligue para o fixo: (54) 3361-2383");
+            alert("O WhatsApp do escritório estará disponível em breve! \n\nPor enquanto, redirecionando para a discagem telefônica...");
+            window.location.href = "tel:5433612383";
         });
     }
 
-    // 3. Efeito simples ao rolar a página (Opcional - Navbar fica um pouco transparente)
+    // Efeito sutil na Header ao rolar
     window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
         if (window.scrollY > 50) {
-            header.style.opacity = "0.95";
+            header.style.opacity = "0.98";
+            header.style.padding = "0.5rem 5%"; // Fica mais fininho ao rolar
         } else {
             header.style.opacity = "1";
+            header.style.padding = "0.8rem 5%";
         }
     });
-
 });

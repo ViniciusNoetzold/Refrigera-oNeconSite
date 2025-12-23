@@ -1,11 +1,20 @@
 :root {
-    /* Paleta de Cores Necon */
-    --necon-red: #D32F2F;      /* Vermelho principal */
-    --necon-dark: #212121;     /* Cinza quase preto */
-    --necon-gray: #424242;     /* Cinza médio */
-    --ice-blue: #E0F7FA;       /* Azul bem claro (gelo) */
-    --text-color: #333;
-    --white: #ffffff;
+    /* --- PALETA NOVA (Azul + Vermelho + Branco) --- */
+    
+    /* Azuis (Confiança / Técnico) */
+    --blue-primary: #1F2A44;    /* Header, Footer, Títulos */
+    --blue-secondary: #2F3E6C;  /* Elementos secundários */
+    --blue-light-bg: #E9EDF5;   /* Fundos suaves */
+    
+    /* Vermelhos (Ação / Destaque - Usar com moderação) */
+    --red-highlight: #C62828;   /* Botões, Detalhes, Hover */
+    --red-light: #E53935;       /* Bordas ou detalhes menores */
+
+    /* Neutros */
+    --white: #FFFFFF;
+    --grey-bg: #F4F4F4;
+    --text-dark: #333333;       /* Texto principal */
+    --text-light: #B0B0B0;
 }
 
 * {
@@ -16,204 +25,276 @@
 }
 
 body {
-    background-color: #f4f4f4;
-    color: var(--text-color);
+    background-color: var(--grey-bg);
+    color: var(--text-dark);
     line-height: 1.6;
 }
 
 /* --- HEADER --- */
 header {
-    background-color: var(--necon-dark);
+    background-color: var(--blue-primary); /* Azul Profundo */
     color: var(--white);
-    padding: 1rem 5%;
+    padding: 0.8rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 4px solid var(--necon-red);
-    position: sticky; /* Menu fixo no topo */
+    border-bottom: 4px solid var(--red-highlight); /* Detalhe vermelho */
+    position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
+.main-logo {
+    height: 65px;
+    width: auto;
+    display: block;
+    /* Adicionei um filtro sutil para garantir que o logo se destaque no fundo azul, se necessário */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
-.logo span { 
-    color: var(--necon-red);
-    margin-left: 5px;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-/* Configuração do Pinguim no O */
-.penguin-o {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    margin: 0 1px;
-}
-.penguin-icon {
-    font-size: 1.2rem;
-}
-
-.contact-header {
+.contact-header .phone-box {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: bold;
+    background: rgba(255,255,255,0.1); /* Fundo vidro leve */
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+.contact-header .phone-box:hover {
+    background: var(--red-highlight);
 }
 
-.btn-call {
-    background-color: var(--necon-red);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
+.phone-box a {
+    color: var(--white);
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
-.btn-call:hover { background-color: #b71c1c; }
 
-.whatsapp-btn {
-    background-color: #25D366;
-    margin-top: 15px;
-    display: inline-block;
-}
-.whatsapp-btn:hover { background-color: #1ebc57; }
-
-/* --- HERO SECTION --- */
+/* --- HERO SECTION (Banner) --- */
 .hero {
-    /* Gradiente escuro sobreposto à imagem */
-    background: linear-gradient(rgba(33, 33, 33, 0.8), rgba(33, 33, 33, 0.9)), 
-                url('background.jpg'); /* Se tiver uma foto, coloque o nome aqui */
+    /* Imagem com Overlay Azul Escuro (conforme pedido) */
+    background: linear-gradient(rgba(31, 42, 68, 0.85), rgba(31, 42, 68, 0.85)), 
+                url('fachada.jpg'); /* Certifique-se que a fachada.jpg está na pasta raiz ou ajuste o caminho */
     background-size: cover;
     background-position: center;
-    color: white;
+    background-attachment: fixed; /* Efeito parallax leve */
+    color: var(--white);
     text-align: center;
-    padding: 100px 20px;
+    padding: 120px 20px;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 15px;
+    font-weight: 900;
 }
 
 .hero p {
+    font-size: 1.3rem;
+    color: var(--blue-light-bg); /* Azul bem clarinho para o texto de apoio */
+    margin-bottom: 35px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Botão WhatsApp com Pulse */
+.whatsapp-btn {
+    background-color: #25D366; /* Verde Oficial WhatsApp */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px; /* Mais arredondado */
     font-size: 1.2rem;
-    color: var(--ice-blue);
-    margin-bottom: 25px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    transition: transform 0.3s;
+    animation: pulse 2s infinite; /* Animação ativa */
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.05);
+    background-color: #1ebc57;
+}
+
+/* Animação Pulse Keyframes */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 /* --- SEÇÕES GERAIS --- */
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 70px 20px;
 }
 
 .section-title {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 2rem;
-    color: var(--necon-dark);
+    font-size: 2.2rem;
+    color: var(--blue-primary);
     position: relative;
-    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .section-title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 80px;
     height: 4px;
-    background-color: var(--necon-red);
-    margin: 10px auto 0;
+    background-color: var(--red-highlight); /* O traço vermelho abaixo do título */
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
+
+/* Ajuste para título alinhado a esquerda na seção Sobre */
+.section-title.left-align { text-align: left; }
+.section-title.left-align::after { margin: 15px 0 0; }
+
+/* --- SEÇÃO SOBRE --- */
+.about-section {
+    background-color: var(--white);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-image { flex: 1; text-align: center; }
+.about-image img { max-width: 100%; height: auto; max-height: 250px; }
+
+.about-text { flex: 1.5; }
+.about-text p { margin-bottom: 15px; font-size: 1.1rem; color: #555; }
 
 /* --- CARDS DE SERVIÇOS --- */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
 
 .card {
     background: white;
-    padding: 40px 20px;
+    padding: 40px 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     text-align: center;
-    border-top: 5px solid var(--necon-red);
-    transition: transform 0.3s ease;
+    /* Borda superior vermelha fina */
+    border-top: 4px solid var(--red-highlight); 
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #eee; /* Leve borda embaixo */
 }
 
+/* Hover Específico pedido */
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .card i {
     font-size: 3.5rem;
-    color: var(--necon-dark);
-    margin-bottom: 20px;
+    color: var(--blue-secondary); /* Ícones azuis */
+    margin-bottom: 25px;
 }
 
-.card h3 { margin-bottom: 15px; color: var(--necon-red); }
+.card h3 { 
+    margin-bottom: 15px; 
+    color: var(--red-highlight); /* Títulos em vermelho */
+    font-size: 1.4rem;
+}
 
-/* --- ALERTA --- */
-.alert-box {
-    background-color: #fff8e1; /* Fundo amarelo claro */
-    border-left: 6px solid #ffb300;
-    padding: 25px;
+.card p { color: #666; }
+
+/* --- BOX DE FOCO (O que não fazemos) --- */
+.focus-box {
+    background-color: #f9f9f9; /* Fundo neutro/bege claro */
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid var(--blue-secondary); /* Detalhe lateral azul */
+    padding: 30px;
     margin: 60px auto 0;
-    max-width: 800px;
+    max-width: 850px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.focus-box h4 {
+    color: var(--blue-primary);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.focus-box .small-text { margin-top: 15px; margin-bottom: 10px; font-weight: 500; }
+
+.focus-box ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.focus-box li {
+    background: #fff;
+    padding: 8px 16px;
     border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-.alert-box h4 { color: #f57f17; margin-bottom: 15px; font-size: 1.2rem; }
-.alert-box ul { list-style: none; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-.alert-box li { 
-    background: #fff; 
-    padding: 8px 15px; 
-    border-radius: 20px; 
-    font-size: 0.9rem; 
-    border: 1px solid #ffca28;
+    font-size: 0.95rem;
+    border: 1px solid #ddd;
     color: #555;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
+
+.focus-box li i { color: var(--red-light); font-size: 0.9rem; }
 
 /* --- MAPA E RODAPÉ --- */
 .location-section {
-    background-color: white;
+    background-color: var(--white);
     padding: 50px 0;
     text-align: center;
 }
-.address-text { margin-bottom: 30px; font-size: 1.2rem; font-weight: bold; }
-.map-container iframe { border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.map-container iframe { border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
 footer {
-    background-color: var(--necon-dark);
-    color: #bbb;
+    background-color: var(--blue-primary); /* Azul Institucional */
+    color: #ccc;
     text-align: center;
-    padding: 30px 20px;
+    padding: 40px 20px;
     font-size: 0.9rem;
-    border-top: 5px solid var(--necon-red);
+    border-top: 5px solid var(--red-highlight);
 }
 
-footer strong { color: white; }
-footer span { color: var(--necon-red); font-weight: bold; }
+footer strong { color: var(--white); }
 
-/* --- RESPONSIVIDADE (Celular) --- */
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 768px) {
     header { flex-direction: column; gap: 15px; text-align: center; }
-    .hero h1 { font-size: 1.8rem; }
-    .services-grid { grid-template-columns: 1fr; } /* Um card por linha no celular */
-    .alert-box ul { flex-direction: column; }
+    .main-logo { height: 60px; margin: 0 auto; }
+    
+    .hero h1 { font-size: 2rem; }
+    
+    .about-content { flex-direction: column; text-align: center; }
+    .section-title.left-align { text-align: center; }
+    .section-title.left-align::after { margin: 15px auto 0; }
+    
+    .services-grid { grid-template-columns: 1fr; }
+    .focus-box ul { flex-direction: column; }
 }
