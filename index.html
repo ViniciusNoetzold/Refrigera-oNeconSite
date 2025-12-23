@@ -1,106 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Necon Refrigeração | Sarandi - RS</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NECON Refrigeração & Auto Ar</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <header>
-        <div class="logo-container">
-            <img src="fotosNecon/NeconJoinha.png" alt="Necon Refrigeração - Logo" class="main-logo">
-        </div>
-        <div class="contact-header">
-            <div class="phone-box">
-                <i class="fa-solid fa-phone"></i>
-                <a href="tel:5433612383">(54) 3361-2383</a>
-            </div>
-        </div>
-    </header>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <img src="images/logo.png" alt="NECON Refrigeração">
+      </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Especialistas em Climatização e Linha Branca</h1>
-            <p>Seu conforto é nossa especialidade. Soluções técnicas para veículos e eletrodomésticos.</p>
-            
-            <button id="btn-whats-aviso" class="btn-main whatsapp-btn">
-                <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
-            </button>
-        </div>
-    </section>
+      <div class="header-right">
+        <a href="tel:+555433612383" class="phone">(54) 3361-2383</a>
+      </div>
+    </div>
+  </header>
 
-    <section class="container about-section">
-        <div class="about-content">
-            <div class="about-image">
-                <img src="fotosNecon/NeconLogo.png" alt="Necon Refrigeração - Institucional">
-            </div>
-            <div class="about-text">
-                <h2 class="section-title left-align">Confiança que Esfria</h2>
-                <p>Há anos no mercado de Sarandi, a <strong>Necon Refrigeração & Auto Ar</strong> construiu uma história baseada em excelência técnica.</p>
-                <p>Nossa equipe utiliza equipamentos de ponta para diagnóstico e reparo. Seja para garantir o clima perfeito no seu carro ou o funcionamento ideal da sua geladeira, aqui você encontra transparência e agilidade.</p>
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Especialistas em Climatização e Linha Branca</h1>
+      <p>Soluções completas de refrigeração automotiva e residencial em Sarandi.</p>
 
-    <section class="container" id="servicos">
-        <h2 class="section-title">Nossas Especialidades</h2>
-        
-        <div class="services-grid">
-            <div class="card">
-                <i class="fa-solid fa-car"></i>
-                <h3>Ar Condicionado Automotivo</h3>
-                <p>Manutenção completa, limpeza e carga de gás para linha leve e pesada.</p>
-            </div>
+<a href="#" id="btn-whatsapp" class="btn-whatsapp">
+  Falar no WhatsApp
+</a>
 
-            <div class="card">
-                <i class="fa-solid fa-snowflake"></i>
-                <h3>Geladeiras e Freezers</h3>
-                <p>Assistência técnica especializada em refrigeração comercial e residencial.</p>
-            </div>
+    </div>
+  </section>
 
-            <div class="card">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-                <h3>Máquinas de Lavar e Fornos</h3>
-                <p>Reparo de placas, mecânica e elétrica para lavadoras e fornos elétricos.</p>
-            </div>
+  <!-- ESPECIALIDADES -->
+  <section class="especialidades">
+    <div class="container">
+      <h2>Nossas Especialidades</h2>
+
+      <div class="cards">
+        <div class="card">
+          <img src="images/auto.png" alt="Ar Condicionado Automotivo">
+          <h3>Ar Condicionado Automotivo</h3>
+          <p>Manutenção e carga de gás para linha leve e pesada.</p>
         </div>
 
-        <div class="focus-box">
-            <h4><i class="fa-solid fa-circle-exclamation"></i> Foco de Atendimento</h4>
-            <p>Para garantir a <strong>excelência técnica</strong> e a agilidade que você merece, concentramos nossa operação nos itens acima.</p>
-            <p class="small-text">No momento, <strong>não realizamos</strong> manutenção em:</p>
-            <ul>
-                <li><i class="fa-solid fa-ban"></i> Micro-ondas</li>
-                <li><i class="fa-solid fa-ban"></i> Secadoras</li>
-                <li><i class="fa-solid fa-ban"></i> Liquidificadores</li>
-                <li><i class="fa-solid fa-ban"></i> Eletros portáteis</li>
-            </ul>
+        <div class="card">
+          <img src="images/geladeira.png" alt="Geladeiras e Freezers">
+          <h3>Geladeiras e Freezers</h3>
+          <p>Conserto especializado em refrigeração residencial e comercial.</p>
         </div>
-    </section>
 
-    <section class="location-section">
-        <div class="container">
-            <h2 class="section-title">Localização</h2>
-            <p class="address-text">Av. Expedicionário, Sarandi - RS</p>
-            
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.906859187736!2d-52.91826692449166!3d-27.953288976158766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94fcdba60fa98ac7%3A0x8d0182590cc2c4cd!2sNecon%20Refrigera%C3%A7%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1708700000000!5m2!1spt-BR!2sbr" 
-                width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+        <div class="card">
+          <img src="images/lavadora.png" alt="Máquinas de Lavar e Fornos">
+          <h3>Máquinas de Lavar e Fornos</h3>
+          <p>Reparo técnico e manutenção especializada.</p>
         </div>
-    </section>
+      </div>
 
-    <footer>
-        <p><strong>Necon Refrigeração</strong> © <span id="current-year">2025</span></p>
-        <p>Sarandi - RS | Fone: (54) 3361-2383</p>
-    </footer>
+      <div class="alerta">
+        <strong>Foco de Atendimento</strong>
+        <p>Para garantir excelência no atendimento, não realizamos manutenção em:</p>
 
-    <script src="script.js"></script>
+        <div class="tags">
+          <span>Micro-ondas</span>
+          <span>Secadoras</span>
+          <span>Liquidificadores</span>
+          <span>Eletros portáteis</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+  <p>© <span id="current-year"></span> NECON Refrigeração & Auto Ar — Todos os direitos reservados</p>
+</footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
