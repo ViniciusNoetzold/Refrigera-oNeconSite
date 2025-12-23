@@ -45,10 +45,11 @@ header {
 
 /* Logo com animação aplicada */
 .main-logo { 
-    height: 60px; 
+    /* Aumente este valor aqui (ex: de 60px para 90px) */
+    height: 90px; 
+    
     width: auto; 
     display: block; 
-    /* Aplica a animação de balanço suave */
     animation: gentle-rocking 4s ease-in-out infinite;
 }
 
