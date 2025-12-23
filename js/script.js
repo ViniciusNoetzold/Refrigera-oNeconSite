@@ -1,6 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==================================================
+    // 0. FORÇAR MODO DESKTOP (ZOOM OUT)
+    // ==================================================
+    // Procura a tag viewport e força uma largura fixa de 1280px
+    let viewport = document.querySelector('meta[name="viewport"]');
+    if (!viewport) {
+        viewport = document.createElement('meta');
+        viewport.name = "viewport";
+        document.head.appendChild(viewport);
+    }
+    // 'width=1280' força o layout de PC. 
+    // O navegador vai dar zoom out automático para caber na tela do celular.
+    viewport.setAttribute('content', 'width=1280, initial-scale=0.1');
+
+
+    // ==================================================
     // 1. WHATSAPP E DATA
     // ==================================================
     const yearSpan = document.getElementById('current-year');
@@ -18,9 +33,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==================================================
-    // 2. PINGUIM 3D (SEM CAMISA)
+    // 2. PINGUIM 3D
     // ==================================================
     if (typeof THREE === 'undefined') return;
+
+    // --- BOTÃO DE MINIMIZAR ---
+    const toggleBtn = document.createElement('button');
+    toggleBtn.innerHTML = '−';
+    toggleBtn.title = "Ocultar Pinguim";
+    
+    Object.assign(toggleBtn.style, {
+        position: 'fixed',
+        zIndex: '10000',
+        width: '40px',
+        height: '40px',
+        borderRadius: '50%',
+        border: 'none',
+        backgroundColor: '#1d4ed8',
+        color: 'white',
+        fontSize: '20px',
+        cursor: 'pointer',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.3)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'all 0.3s ease'
+    });
+    document.body.appendChild(toggleBtn);
+
 
     // --- SETUP DA CENA ---
     const scene = new THREE.Scene();
@@ -37,7 +77,26 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.domElement.style.left = '0';
     renderer.domElement.style.zIndex = '9999';
     renderer.domElement.style.pointerEvents = 'none';
+    renderer.domElement.style.transition = 'opacity 0.5s ease';
     document.body.appendChild(renderer.domElement);
+
+    // --- LÓGICA DO BOTÃO ---
+    let isVisible = true;
+
+    toggleBtn.addEventListener('click', () => {
+        isVisible = !isVisible;
+        if (isVisible) {
+            renderer.domElement.style.opacity = '1';
+            toggleBtn.innerHTML = '−';
+            toggleBtn.style.backgroundColor = '#1d4ed8';
+            toggleBtn.title = "Ocultar Pinguim";
+        } else {
+            renderer.domElement.style.opacity = '0';
+            toggleBtn.innerHTML = '🐧';
+            toggleBtn.style.backgroundColor = '#333';
+            toggleBtn.title = "Mostrar Pinguim";
+        }
+    });
 
     // --- LUZES ---
     scene.add(new THREE.AmbientLight(0xffffff, 0.8));
@@ -57,36 +116,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const penguin = new THREE.Group();
     scene.add(penguin);
 
-    // 1. Corpo
-    const bodyGeo = new THREE.SphereGeometry(1.2, 32, 32);
-    const body = new THREE.Mesh(bodyGeo, blackMat);
+    // Corpo
+    const body = new THREE.Mesh(new THREE.SphereGeometry(1.2, 32, 32), blackMat);
     body.scale.set(1.0, 1.8, 0.9);
     body.position.y = -0.3;
     penguin.add(body);
 
-    // 2. Barriga (Restaurada)
-    const bellyGeo = new THREE.SphereGeometry(0.95, 32, 32);
-    const belly = new THREE.Mesh(bellyGeo, whiteMat);
+    // Barriga
+    const belly = new THREE.Mesh(new THREE.SphereGeometry(0.95, 32, 32), whiteMat);
     belly.scale.set(0.9, 1.3, 0.5);
     belly.position.set(0, -0.5, 0.55);
     penguin.add(belly);
 
-    // 3. Cabeça
+    // Cabeça
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.9, 32, 32), blackMat);
     head.position.y = 0.85; 
     penguin.add(head);
 
-    // 4. Bico
+    // Bico
     const beak = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.5, 16), yellowMat);
     beak.rotation.x = Math.PI / 2;
     beak.position.set(0, 0.75, 1.0); 
     penguin.add(beak);
 
-    // 5. Olhos
+    // Olhos
     const eyeGeo = new THREE.SphereGeometry(0.2, 16, 16);
     const pupilGeo = new THREE.SphereGeometry(0.07, 12, 12);
     
-    // Olho Esquerdo
     const eyeL = new THREE.Mesh(eyeGeo, whiteMat);
     const pupilL = new THREE.Mesh(pupilGeo, blackMat);
     pupilL.position.z = 0.18;
@@ -95,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
     eyeGroupL.position.set(-0.25, 0.95, 0.75);
     penguin.add(eyeGroupL);
 
-    // Olho Direito
     const eyeR = new THREE.Mesh(eyeGeo, whiteMat);
     const pupilR = new THREE.Mesh(pupilGeo, blackMat);
     pupilR.position.z = 0.18;
@@ -104,22 +159,19 @@ document.addEventListener('DOMContentLoaded', () => {
     eyeGroupR.position.set(0.25, 0.95, 0.75);
     penguin.add(eyeGroupR);
 
-    // 6. Asas (Sem mangas)
+    // Asas
     const wingGeo = new THREE.SphereGeometry(0.5, 32, 32);
     const restAngle = Math.PI / 18; 
 
-    // Asa Esquerda
     const wingL = new THREE.Mesh(wingGeo, blackMat);
     wingL.scale.set(0.45, 2.5, 0.8);
     wingL.position.set(0, -0.8, 0); 
-
     const wingGroupL = new THREE.Group();
     wingGroupL.position.set(-1.1, 0.1, 0); 
     wingGroupL.add(wingL);
     wingGroupL.rotation.z = restAngle; 
     penguin.add(wingGroupL);
 
-    // Asa Direita
     const wingR = wingL.clone();
     const wingGroupR = new THREE.Group();
     wingGroupR.position.set(1.1, 0.1, 0);
@@ -127,23 +179,21 @@ document.addEventListener('DOMContentLoaded', () => {
     wingGroupR.rotation.z = -restAngle; 
     penguin.add(wingGroupR);
 
-    // 7. Pés
+    // Pés
     const footGeo = new THREE.SphereGeometry(0.4, 16, 16);
     const footL = new THREE.Mesh(footGeo, yellowMat);
     footL.scale.set(1.2, 0.4, 1.5);
     footL.position.set(-0.5, -2.3, 0.3);
     penguin.add(footL);
-    
     const footR = footL.clone();
     footR.position.x = 0.5;
     penguin.add(footR);
 
-    // Tamanho final (Pequeno)
     penguin.scale.set(0.35, 0.35, 0.35);
 
-
-    // --- CÁLCULO DE POSIÇÃO ---
-    let mouseWorldX = 0; let mouseWorldY = 0;
+    // --- POSIÇÃO (FORÇADA PARA DESKTOP) ---
+    let mouseWorldX = 0; 
+    let mouseWorldY = 0;
     const vFOV = THREE.Math.degToRad(camera.fov); 
     const visibleHeight = 2 * Math.tan(vFOV / 2) * cameraZ;
     let visibleWidth = visibleHeight * (window.innerWidth / window.innerHeight);
@@ -151,15 +201,41 @@ document.addEventListener('DOMContentLoaded', () => {
     function updatePosition() {
         const aspect = window.innerWidth / window.innerHeight;
         visibleWidth = visibleHeight * aspect;
-        // Posiciona no canto superior esquerdo
+        
+        // Como estamos forçando a resolução alta, o pinguim sempre vai 
+        // se comportar como Desktop (canto esquerdo e tamanho padrão)
+        penguin.scale.set(0.35, 0.35, 0.35);
         penguin.position.set(-(visibleWidth / 2) + 1.5, (visibleHeight / 2) - 1.2, 0);
+            
+        toggleBtn.style.top = '20px';
+        toggleBtn.style.left = '20px';
+        toggleBtn.style.right = 'auto';
     }
-    updatePosition();
+    updatePosition(); 
+
+    // --- ALVO DE OLHAR (MOUSE OU TOQUE) ---
+    function updateLookTarget(clientX, clientY) {
+        // Como a viewport foi alterada, as coordenadas do mouse precisam
+        // ser relativas à nova "largura virtual" da janela
+        mouseWorldX = (clientX / window.innerWidth) * visibleWidth - (visibleWidth / 2);
+        mouseWorldY = -((clientY / window.innerHeight) * visibleHeight - (visibleHeight / 2));
+    }
 
     document.addEventListener('mousemove', (e) => {
-        mouseWorldX = (e.clientX / window.innerWidth) * visibleWidth - (visibleWidth / 2);
-        mouseWorldY = -((e.clientY / window.innerHeight) * visibleHeight - (visibleHeight / 2));
+        updateLookTarget(e.clientX, e.clientY);
     });
+
+    document.addEventListener('touchstart', (e) => {
+        if(e.touches.length > 0) {
+            updateLookTarget(e.touches[0].clientX, e.touches[0].clientY);
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        if(e.touches.length > 0) {
+            updateLookTarget(e.touches[0].clientX, e.touches[0].clientY);
+        }
+    }, { passive: true });
 
 
     // --- ANIMAÇÃO ---
@@ -168,11 +244,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animate() {
         requestAnimationFrame(animate);
+        
+        if (!isVisible) return; 
+
         const delta = clock.getDelta();
         const time = clock.getElapsedTime();
 
-        // Flutuar & Olhar
+        // Flutuar
         penguin.position.y += Math.sin(time * 2) * 0.002;
+
+        // OLHAR
         const dx = mouseWorldX - penguin.position.x;
         const dy = mouseWorldY - penguin.position.y;
         penguin.rotation.y += (Math.atan2(dx, 3) - penguin.rotation.y) * 0.1;
