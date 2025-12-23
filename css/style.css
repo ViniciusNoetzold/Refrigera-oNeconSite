@@ -95,7 +95,8 @@ header {
 .hero {
     position: relative; height: 600px;
     /* Ajuste para procurar a fachada na pasta images (subindo um nível com ../) */
-    background: var(--blue-dark) url('../images/fachada.jpg') center/cover no-repeat;
+    background: var(--blue-dark)  center/cover no-repeat; 
+    /* url('../images/fachada.jpg') */
     display: flex; align-items: center; justify-content: center;
     text-align: center; color: white;
 }
@@ -757,18 +758,36 @@ footer {
 }
 
 /* --- RESPONSIVO --- */
+/* --- RESPONSIVO (Adaptação para Celulares - NOVO) --- */
 @media (max-width: 768px) {
+    /* 1. Ajuste do Cabeçalho */
+    .header-container { flex-direction: column; gap: 15px; }
     .desktop-nav { display: none; }
-    .header-container { flex-direction: column; gap: 10px; }
-    .hero { height: auto; padding: 120px 0; }
-    .hero h1 { font-size: 2.2rem; }
-    .hero-buttons { flex-direction: column; }
-    .features-grid, .about-content, .faq-grid { grid-template-columns: 1fr; }
-    .features-section { margin-top: 0; padding-top: 40px; }
-    .about-image-wrapper { margin-bottom: 30px; }
+    
+    /* 2. Hero (Aquele Título Gigante) */
+    .hero { height: auto; padding: 100px 0; background-position: center; }
+    .hero h1 { font-size: 2.5rem; line-height: 1.2; }
+    .hero p { font-size: 1.1rem; padding: 0 15px; }
+    .hero-buttons { flex-direction: column; padding: 0 40px; }
+
+    /* 3. Ajustes de Espaçamento Geral */
+    .section-padding { padding: 50px 0; }
+    .section-title { font-size: 2rem; }
+
+    /* 4. Seção "Quem Somos" */
+    .about-content { grid-template-columns: 1fr; text-align: center; }
+    .about-image-wrapper { margin-bottom: 40px; }
+    .check-list li { justify-content: flex-start; text-align: left; }
+
+    /* 5. Grids (Serviços, Features, FAQ) */
+    .features-grid, .services-grid, .faq-grid { grid-template-columns: 1fr; padding: 0 10px; }
+    
+    /* 6. Localização e Rodapé */
     .location-wrapper { flex-direction: column; }
-    .location-text { padding: 50px 20px; text-align: center; }
-    .address-big, .phone-big { justify-content: center; }
+    .location-text { padding: 0 0 40px 0; text-align: center; }
+    .address-big, .phone-big { justify-content: center; font-size: 1.1rem; }
+    .map-container { height: 300px; }
+    .tech-card { width: 100%; justify-content: center; }
 }
 
 /* --- ESTILO DOS CONTATOS TÉCNICOS (RODAPÉ) --- */
@@ -840,6 +859,17 @@ footer {
     color: var(--red-main); /* Número em vermelho neon */
     font-weight: 700;
     font-size: 0.95rem;
+}
+
+/* Canvas do Three.js */
+#canvas-3d {
+    position: fixed; /* Isso é OBRIGATÓRIO para ele flutuar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; /* Garante que fique na frente de tudo */
+    pointer-events: none; /* Deixa você clicar no site através dele */
 }
 
 /* --- ANIMAÇÕES --- */
