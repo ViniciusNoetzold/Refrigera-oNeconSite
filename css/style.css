@@ -43,7 +43,7 @@ header {
 }
 .header-container { display: flex; justify-content: space-between; align-items: center; }
 
-/* FIX 1: Limite de altura para o logo do topo */
+/* Logo travado em 60px para não ficar gigante */
 .main-logo { height: 60px; width: auto; display: block; }
 
 .desktop-nav a {
@@ -61,7 +61,8 @@ header {
 /* --- HERO --- */
 .hero {
     position: relative; height: 600px;
-    background: var(--blue-dark) url('fachada.jpg') center/cover no-repeat;
+    /* Ajuste para procurar a fachada na pasta images (subindo um nível com ../) */
+    background: var(--blue-dark) url('../images/fachada.jpg') center/cover no-repeat;
     display: flex; align-items: center; justify-content: center;
     text-align: center; color: white;
 }
@@ -112,15 +113,15 @@ header {
     color: var(--red-main); font-size: 1.5rem;
 }
 
-/* --- SOBRE --- */
+/* --- SOBRE (CORREÇÃO IMAGEM) --- */
 .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .about-image-wrapper { position: relative; text-align: center; }
 
-/* FIX 2: O SEGREDO DO LOGO GIGANTE ESTÁ AQUI */
+/* TRAVA DE SEGURANÇA PARA O JOINHA NÃO FICAR GIGANTE */
 .about-image-wrapper img {
     max-width: 100%;
     height: auto;
-    max-height: 250px; /* Impede a imagem de crescer demais */
+    max-height: 250px; 
     object-fit: contain;
 }
 
