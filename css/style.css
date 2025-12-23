@@ -43,8 +43,14 @@ header {
 }
 .header-container { display: flex; justify-content: space-between; align-items: center; }
 
-/* Logo travado em 60px para não ficar gigante */
-.main-logo { height: 60px; width: auto; display: block; }
+/* Logo com animação aplicada */
+.main-logo { 
+    height: 60px; 
+    width: auto; 
+    display: block; 
+    /* Aplica a animação de balanço suave */
+    animation: gentle-rocking 4s ease-in-out infinite;
+}
 
 .desktop-nav a {
     color: #ccc; text-decoration: none; margin: 0 15px; font-weight: 500; transition: 0.3s;
@@ -190,10 +196,18 @@ footer { background-color: #151d30; color: #8892b0; padding: 40px 0; text-align:
     .address-big, .phone-big { justify-content: center; }
 }
 
-/* Animação */
+/* --- ANIMAÇÕES --- */
+
 .pulse-anim { animation: pulse 2s infinite; }
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
     70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Animação de Balanço Suave para o Logo */
+@keyframes gentle-rocking {
+    0% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    100% { transform: translateX(-3px); }
 }
