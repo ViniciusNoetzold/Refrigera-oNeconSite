@@ -1,18 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==================================================
-    // 0. FORÇAR MODO DESKTOP (ZOOM OUT)
+    // 0. FORÇAR MODO DESKTOP (AJUSTADO)
     // ==================================================
-    // Procura a tag viewport e força uma largura fixa de 1280px
     let viewport = document.querySelector('meta[name="viewport"]');
     if (!viewport) {
         viewport = document.createElement('meta');
         viewport.name = "viewport";
         document.head.appendChild(viewport);
     }
-    // 'width=1280' força o layout de PC. 
-    // O navegador vai dar zoom out automático para caber na tela do celular.
-    viewport.setAttribute('content', 'width=1280, initial-scale=0.1');
+    // Removemos o 'initial-scale' fixo para deixar o navegador ajustar o zoom sozinho
+    viewport.setAttribute('content', 'width=1280');
 
 
     // ==================================================
@@ -37,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================================================
     if (typeof THREE === 'undefined') return;
 
-    // --- BOTÃO DE MINIMIZAR ---
+    // --- BOTÃO DE MINIMIZAR (AGORA GIGANTE PARA APARECER NO CELULAR) ---
     const toggleBtn = document.createElement('button');
     toggleBtn.innerHTML = '−';
     toggleBtn.title = "Ocultar Pinguim";
@@ -45,19 +43,23 @@ document.addEventListener('DOMContentLoaded', () => {
     Object.assign(toggleBtn.style, {
         position: 'fixed',
         zIndex: '10000',
-        width: '40px',
-        height: '40px',
+        // Aumentei drasticamente o tamanho para compensar o zoom out do modo desktop
+        width: '80px', 
+        height: '80px',
         borderRadius: '50%',
         border: 'none',
         backgroundColor: '#1d4ed8',
         color: 'white',
-        fontSize: '20px',
+        fontSize: '40px', // Fonte maior
+        fontWeight: 'bold',
         cursor: 'pointer',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.3)',
+        boxShadow: '0 6px 10px rgba(0,0,0,0.4)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        transition: 'all 0.3s ease'
+        transition: 'all 0.3s ease',
+        // Garante que o toque funciona bem no mobile
+        touchAction: 'manipulation' 
     });
     document.body.appendChild(toggleBtn);
 
@@ -89,12 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
             renderer.domElement.style.opacity = '1';
             toggleBtn.innerHTML = '−';
             toggleBtn.style.backgroundColor = '#1d4ed8';
-            toggleBtn.title = "Ocultar Pinguim";
         } else {
             renderer.domElement.style.opacity = '0';
             toggleBtn.innerHTML = '🐧';
             toggleBtn.style.backgroundColor = '#333';
-            toggleBtn.title = "Mostrar Pinguim";
         }
     });
 
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     penguin.scale.set(0.35, 0.35, 0.35);
 
-    // --- POSIÇÃO (FORÇADA PARA DESKTOP) ---
+    // --- POSIÇÃO ---
     let mouseWorldX = 0; 
     let mouseWorldY = 0;
     const vFOV = THREE.Math.degToRad(camera.fov); 
@@ -202,21 +202,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const aspect = window.innerWidth / window.innerHeight;
         visibleWidth = visibleHeight * aspect;
         
-        // Como estamos forçando a resolução alta, o pinguim sempre vai 
-        // se comportar como Desktop (canto esquerdo e tamanho padrão)
+        // Pinguim no canto esquerdo (Modo Desktop)
         penguin.scale.set(0.35, 0.35, 0.35);
         penguin.position.set(-(visibleWidth / 2) + 1.5, (visibleHeight / 2) - 1.2, 0);
             
-        toggleBtn.style.top = '20px';
-        toggleBtn.style.left = '20px';
+        // Botão no topo esquerdo (com margem maior)
+        toggleBtn.style.top = '30px';
+        toggleBtn.style.left = '30px';
         toggleBtn.style.right = 'auto';
     }
     updatePosition(); 
 
-    // --- ALVO DE OLHAR (MOUSE OU TOQUE) ---
+    // --- ALVO DE OLHAR ---
     function updateLookTarget(clientX, clientY) {
-        // Como a viewport foi alterada, as coordenadas do mouse precisam
-        // ser relativas à nova "largura virtual" da janela
         mouseWorldX = (clientX / window.innerWidth) * visibleWidth - (visibleWidth / 2);
         mouseWorldY = -((clientY / window.innerHeight) * visibleHeight - (visibleHeight / 2));
     }
@@ -253,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Flutuar
         penguin.position.y += Math.sin(time * 2) * 0.002;
 
-        // OLHAR
+        // Olhar
         const dx = mouseWorldX - penguin.position.x;
         const dy = mouseWorldY - penguin.position.y;
         penguin.rotation.y += (Math.atan2(dx, 3) - penguin.rotation.y) * 0.1;
