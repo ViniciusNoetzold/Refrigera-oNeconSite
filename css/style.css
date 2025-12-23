@@ -132,6 +132,7 @@ header {
     align-items: center;
 }
 
+/* Limite para o logo do cabeçalho */
 .main-logo { height: 60px; width: auto; display: block; }
 
 .desktop-nav a {
@@ -147,8 +148,8 @@ header {
 /* --- HERO --- */
 .hero {
     position: relative;
-    height: 600px; /* Altura fixa para impacto */
-    background: url('fachada.jpg') center/cover no-repeat; /* Ajuste o caminho se necessário */
+    height: 600px;
+    background: url('fachada.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,7 +173,7 @@ header {
 
 .tagline {
     display: block;
-    color: var(--red-main); /* Mudança aqui para destacar no fundo escuro */
+    color: var(--red-main);
     font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 15px;
@@ -197,11 +198,11 @@ header {
 
 .hero-buttons { display: flex; gap: 15px; justify-content: center; }
 
-/* --- FEATURES (Diferenciais) --- */
+/* --- FEATURES --- */
 .features-section {
     padding: 40px 0;
     background-color: var(--white);
-    margin-top: -60px; /* Sobrepõe o banner levemente */
+    margin-top: -60px;
     position: relative;
     z-index: 10;
 }
@@ -238,7 +239,7 @@ header {
 .feature-item h3 { color: var(--blue-dark); margin-bottom: 10px; }
 .feature-item p { color: var(--text-light); font-size: 0.95rem; }
 
-/* --- SOBRE --- */
+/* --- SOBRE (CORREÇÃO DE IMAGEM) --- */
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -247,7 +248,14 @@ header {
 }
 
 .about-image-wrapper { position: relative; text-align: center; }
-.about-image-wrapper img { max-width: 80%; height: auto; }
+
+/* AQUI ESTÁ A CORREÇÃO: Limite de altura para a imagem não explodir */
+.about-image-wrapper img { 
+    max-width: 100%; 
+    height: auto; 
+    max-height: 250px; /* <--- O SEGREDINHO */
+    object-fit: contain;
+}
 
 .experience-badge {
     position: absolute;
@@ -397,7 +405,7 @@ footer {
 
 /* --- RESPONSIVO --- */
 @media (max-width: 768px) {
-    .desktop-nav { display: none; } /* Esconde menu no celular por simplicidade */
+    .desktop-nav { display: none; }
     .header-container { justify-content: center; flex-direction: column; gap: 10px; }
     
     .hero { height: auto; padding: 100px 0; }
