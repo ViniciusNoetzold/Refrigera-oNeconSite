@@ -29,7 +29,7 @@
                 <a href="#sobre">Sobre</a>
                 <a href="#servicos">Serviços</a>
                 <a href="#localizacao">Localização</a>
-                <a href="#" class="btn-outline">
+                <a href="tel:+555433612383" class="btn-outline">
                     <i class="fa-solid fa-phone"></i> (54) 3361-2383
                 </a>
             </nav>
@@ -219,7 +219,7 @@
                         </p>
                         <p class="phone-big">
                             <i class="fa-solid fa-phone icon-glow"></i>
-                            <span>(54) 3361-2383</span>
+                            <a href="tel:+555433612383" style="color: inherit; text-decoration: none;">(54) 3361-2383</a>
                         </p>
                     </div>
                     <button id="btn-whats-footer" class="btn-main mt-20 pulse-anim">
@@ -239,9 +239,17 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h3>NECON</h3>
-                    <div class="footer-line"></div>
+                    <div id="footer-3d-logo-container"></div>
+                    <div class="footer-line" style="
+                        width: 300px; 
+                        height: 4px; 
+                        background-color: #D32F2F; 
+                        margin: 10px auto; 
+                        border-radius: 2px;
+                        box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);">
+                    </div>
                 </div>
+
                 <div class="tech-contacts-section">
                     <h4 class="tech-title">Contatos Diretos (Técnicos)</h4>
                     <div class="tech-grid">
@@ -287,19 +295,22 @@
     <script type="module">
         import * as THREE_ORIGINAL from 'three';
 
-        // --- CORREÇÃO PINGUIM ---
+        // Correção de compatibilidade (Pinguim)
         const THREE_FIX = { ...THREE_ORIGINAL };
         THREE_FIX.Math = THREE_ORIGINAL.MathUtils;
         window.THREE = THREE_FIX;
-        // -------------------------
 
-        import { initHeaderLogo } from './js/3d/logo-loader.js';
+        import { initHeaderLogo, initFooterLogo } from './js/3d/logo-loader.js';
 
-        // Carrega o Logo 3D imediatamente, seja no PC ou Celular
         setTimeout(() => {
+            // Inicia Logo do Header (Animado)
             if (document.getElementById('header-3d-logo-container')) {
                 initHeaderLogo('header-3d-logo-container');
-                console.log("Logo 3D iniciado.");
+            }
+
+            // Inicia Logo do Footer (Estático)
+            if (document.getElementById('footer-3d-logo-container')) {
+                initFooterLogo('footer-3d-logo-container');
             }
         }, 100);
     </script>

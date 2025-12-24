@@ -123,6 +123,15 @@ footer {
     font-size: 0.95rem;
 }
 
+#footer-3d-logo-container {
+    width: 300px;       /* Largura fixa */
+    height: 100px;      /* Altura fixa */
+    margin: 0 auto;     /* Centralizar */
+    position: relative;
+    display: block;     /* Garantir que ocupe espaço */
+    overflow: visible;  /* Deixar o 3D aparecer mesmo se passar um pouco */
+}
+
 @media (max-width: 768px) {
     .tech-card {
         width: 100%;
