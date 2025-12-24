@@ -12,3 +12,58 @@
 @import url('sections/about.css');
 @import url('sections/services.css');
 @import url('sections/location.css');
+
+/* =========================================
+   AJUSTES MOBILE E OTIMIZAÇÃO 3D
+   ========================================= */
+
+/* --- PADRÃO (DESKTOP E MOBILE) --- */
+/* Agora o 3D aparece em tudo! */
+#header-3d-logo-container {
+    width: 200px;
+    height: 80px;
+    position: relative;
+    display: block;
+    /* Visível sempre */
+}
+
+/* Esconde a imagem 2D sempre (já que vamos usar 3D em tudo) */
+.logo-2d-mobile {
+    display: none !important;
+}
+
+/* --- AJUSTES ESPECÍFICOS PARA CELULAR --- */
+@media (max-width: 768px) {
+
+    /* 1. CENTRALIZAR O HEADER */
+    .header-container {
+        position: relative;
+        justify-content: center;
+        /* Centraliza o Logo na tela */
+        height: 80px;
+    }
+
+    /* 2. LOGO NO CENTRO */
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        /* Se o logo ficar muito grande no celular, ajuste aqui: */
+        transform: scale(0.9);
+    }
+
+    /* 3. ÍCONE DO MENU NO CANTO DIREITO (FIXO) */
+    .mobile-menu-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+    }
+
+    /* Garante que o container 3D não suma no mobile */
+    #header-3d-logo-container {
+        display: block !important;
+    }
+}

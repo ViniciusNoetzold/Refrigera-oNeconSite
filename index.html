@@ -10,14 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="css/main.css">
-
-    <style>
-        #header-3d-logo-container {
-            width: 200px;
-            height: 80px;
-            position: relative;
-        }
-    </style>
 </head>
 
 <body>
@@ -25,6 +17,7 @@
         <div class="header-container container">
 
             <a href="#" class="logo">
+                <img src="images/NeconHeader.png" alt="Necon Logo" class="logo-2d-mobile">
                 <div id="header-3d-logo-container"></div>
             </a>
 
@@ -234,9 +227,9 @@
                     </button>
                 </div>
                 <div class="map-container">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3527.185289945037!2d-52.92345092367464!3d-27.865188676091485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94fd376483561a3d%3A0x6b876488d57053e8!2sNECON%20REFRIGERA%C3%87%C3%83O!5e0!3m2!1spt-BR!2sbr!4v1703040000000!5m2!1spt-BR!2sbr"
-                        allowfullscreen="" loading="lazy"></iframe>
+                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                        src="https://maps.google.com/maps?q=Necon%20Refrigera%C3%A7%C3%A3o%20Sarandi%20RS&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -294,31 +287,24 @@
     <script type="module">
         import * as THREE_ORIGINAL from 'three';
 
-        // --- CURA PARA O PINGUIM ---
-        // 1. Criamos uma cópia "destravada" do Three.js
+        // --- CORREÇÃO PINGUIM ---
         const THREE_FIX = { ...THREE_ORIGINAL };
-
-        // 2. Adicionamos o comando antigo que o pinguim procura
-        // (O pinguim busca THREE.Math, mas hoje em dia chama MathUtils)
         THREE_FIX.Math = THREE_ORIGINAL.MathUtils;
-
-        // 3. Entregamos essa versão corrigida para o navegador (janela)
         window.THREE = THREE_FIX;
-        // ---------------------------
+        // -------------------------
 
-        // Inicializa o Logo 3D
         import { initHeaderLogo } from './js/3d/logo-loader.js';
 
+        // Carrega o Logo 3D imediatamente, seja no PC ou Celular
         setTimeout(() => {
-            // Verifica se a div existe para não dar erro
             if (document.getElementById('header-3d-logo-container')) {
                 initHeaderLogo('header-3d-logo-container');
+                console.log("Logo 3D iniciado.");
             }
         }, 100);
     </script>
 
     <script src="js/main.js"></script>
-
     <script src="js/3d/penguin.js"></script>
 
 </body>

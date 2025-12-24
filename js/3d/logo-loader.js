@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export function initHeaderLogo(containerId) {
     const container = document.getElementById(containerId);
@@ -8,69 +8,70 @@ export function initHeaderLogo(containerId) {
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    // 1. CENA
+    // --- 1. CENA BÁSICA ---
     const scene = new THREE.Scene();
+
+    // Câmera
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 2000);
-    camera.position.set(0, 0, 25); // Distância da câmera
+    camera.position.set(0, 0, 25);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     container.appendChild(renderer.domElement);
 
-    // 2. LUZES
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+    // --- 2. ILUMINAÇÃO (Essencial para materiais sólidos ficarem bonitos) ---
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
+
     const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
     dirLight.position.set(10, 10, 15);
     scene.add(dirLight);
 
-    // 3. MATERIAIS
-    const texLoader = new THREE.TextureLoader();
-    const basePath = 'assets/models/logo3d/';
+    const fillLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    fillLight.position.set(-10, -5, 5);
+    scene.add(fillLight);
 
-    const mapDiffuse = texLoader.load(basePath + 'map.png', (tex) => { tex.colorSpace = THREE.SRGBColorSpace; });
-
-    const pbrMaterial = new THREE.MeshStandardMaterial({
-        map: mapDiffuse,
-        color: 0xffffff,
-        roughness: 0.4,
-        metalness: 0.3
+    // --- 3. O SEGREDO: CRIAR O MATERIAL NO CÓDIGO ---
+    // Em vez de carregar imagens, criamos o "plástico vermelho" aqui:
+    const solidRedMaterial = new THREE.MeshStandardMaterial({
+        color: 0xD32F2F,    // Vermelho NECON
+        roughness: 0.2,     // 0 = Espelho, 1 = Fosco. 0.2 é bem liso.
+        metalness: 0.1,     // Um toque de metal para refletir a luz
+        flatShading: false  // Deixe 'false' para curvas suaves
     });
 
-    texLoader.load(basePath + 'normalMap.png', (t) => pbrMaterial.normalMap = t);
-    texLoader.load(basePath + 'metalnessMap.png', (t) => pbrMaterial.metalnessMap = t);
-    texLoader.load(basePath + 'roughnessMap.png', (t) => pbrMaterial.roughnessMap = t);
-
-    // 4. CARREGAR O OBJETO
-    const loader = new OBJLoader();
+    // --- 4. CARREGAR O ARQUIVO .GLB ---
+    const loader = new GLTFLoader();
     let loadedObject = null;
+    const alturaBase = -9;
 
-    // === SEUS AJUSTES DE POSIÇÃO ===
-    const alturaBase = -9; // Posição Y que você definiu
+    // Certifique-se que o arquivo na pasta é 'logo.glb'
+    loader.load('assets/models/logo3d/logo.glb',
+        function (gltf) {
+            loadedObject = gltf.scene;
 
-    loader.load(basePath + 'logo.obj',
-        function (object) {
-            loadedObject = object;
-            object.traverse((child) => {
-                if (child.isMesh) child.material = pbrMaterial;
+            // AQUI APLICAMOS A COR SÓLIDA
+            // Percorre todas as partes do modelo e troca a textura antiga pelo nosso material vermelho
+            loadedObject.traverse((child) => {
+                if (child.isMesh) {
+                    child.material = solidRedMaterial;
+                }
             });
 
-            // === SEUS AJUSTES DE ESCALA ===
-            const escala = 24.0; // Escala que você definiu
-            object.scale.set(escala, escala, escala);
+            // Ajustes de Tamanho e Posição
+            const escala = 25.0;
+            loadedObject.scale.set(escala, escala, escala);
+            loadedObject.position.set(0, alturaBase, 0);
 
-            // Define a posição inicial
-            object.position.set(0, alturaBase, 0);
-
-            scene.add(object);
+            scene.add(loadedObject);
         },
         undefined,
-        (error) => console.error('Erro ao carregar:', error)
+        (error) => console.error('Erro:', error)
     );
 
-    // 5. ANIMAÇÃO (BALANÇO SUAVE)
+    // --- 5. ANIMAÇÃO SUAVE ---
     const clock = new THREE.Clock();
 
     function animate() {
@@ -79,14 +80,9 @@ export function initHeaderLogo(containerId) {
         if (loadedObject) {
             const time = clock.getElapsedTime();
 
-            // Configuração do Balanço
-            // Se o texto estiver espelhado ("NOCEN"), troque 0 por Math.PI
-            const rotacaoInicial = 0;
-
-            // Balanço Esquerda/Direita (Tipo pêndulo, sem girar tudo)
-            loadedObject.rotation.y = rotacaoInicial + Math.sin(time * 1.5) * 0.2;
-
-            // Flutuação Cima/Baixo suave (Respeitando sua altura de -9)
+            // Balanço leve
+            loadedObject.rotation.y = Math.sin(time * 1.5) * 0.2;
+            // Flutuação
             loadedObject.position.y = alturaBase + Math.sin(time * 2) * 0.3;
         }
 
