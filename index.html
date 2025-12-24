@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <div id="penguin-container"></div>
+
     <header>
         <div class="header-container container">
 
@@ -29,6 +31,11 @@
                 <a href="#sobre">Sobre</a>
                 <a href="#servicos">Serviços</a>
                 <a href="#localizacao">Localização</a>
+                
+                <button id="btn-play-penguin" class="btn-outline" style="margin-right: 10px;">
+                    <i class="fa-solid fa-play"></i> Play Pinguim
+                </button>
+
                 <a href="tel:+555433612383" class="btn-outline">
                     <i class="fa-solid fa-phone"></i> (54) 3361-2383
                 </a>
@@ -241,7 +248,7 @@
                 <div class="footer-logo">
                     <div id="footer-3d-logo-container"></div>
                     <div class="footer-line" style="
-                        width: 300px; 
+                        width: 120px; 
                         height: 4px; 
                         background-color: #D32F2F; 
                         margin: 10px auto; 
@@ -294,29 +301,29 @@
 
     <script type="module">
         import * as THREE_ORIGINAL from 'three';
-
-        // Correção de compatibilidade (Pinguim)
         const THREE_FIX = { ...THREE_ORIGINAL };
         THREE_FIX.Math = THREE_ORIGINAL.MathUtils;
         window.THREE = THREE_FIX;
 
         import { initHeaderLogo, initFooterLogo } from './js/3d/logo-loader.js';
+        
+        // --- IMPORTAÇÃO DO PINGUIM ---
+        import { initPenguin } from './js/3d/penguin.js';
 
         setTimeout(() => {
-            // Inicia Logo do Header (Animado)
             if (document.getElementById('header-3d-logo-container')) {
                 initHeaderLogo('header-3d-logo-container');
             }
-
-            // Inicia Logo do Footer (Estático)
             if (document.getElementById('footer-3d-logo-container')) {
                 initFooterLogo('footer-3d-logo-container');
             }
+            
+            // --- INICIA O PINGUIM ---
+            initPenguin('penguin-container'); // Passa o ID do container
         }, 100);
     </script>
 
     <script src="js/main.js"></script>
-    <script src="js/3d/penguin.js"></script>
 
 </body>
 
