@@ -1,0 +1,117 @@
+header {
+    background-color: var(--blue-dark);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-logo {
+    height: 60px;
+    width: auto;
+    display: block;
+    animation: gentle-rocking 4s ease-in-out infinite;
+}
+
+/* Links do Menu (Desktop) */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-links a:not(.btn-outline):hover {
+    color: var(--red-main);
+    text-shadow: 0 0 15px rgba(255, 51, 51, 0.8);
+}
+
+/* Ícone do Hambúrguer (Escondido no Desktop) */
+.mobile-menu-icon {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+#header-3d-logo-container {
+    width: 200px;
+    height: 80px;
+    position: relative;
+    /* border: 1px solid red;  <-- Use isso se precisar ver onde a caixa está */
+}
+
+/* --- ANIMAÇÃO LOGO --- */
+@keyframes gentle-rocking {
+    0% {
+        transform: translateX(-5px) scale(1.1);
+    }
+
+    50% {
+        transform: translateX(5px) scale(1.1);
+    }
+
+    100% {
+        transform: translateX(-5px) scale(1.1);
+    }
+}
+
+/* =========================================
+   RESPONSIVO (CELULAR)
+   ========================================= */
+@media (max-width: 900px) {
+
+    /* Mostra o ícone do menu */
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    /* Esconde o menu normal e transforma em gaveta */
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        /* Altura do header */
+        right: 0;
+        background-color: rgba(31, 42, 68, 0.98);
+        /* Fundo azul quase sólido */
+        height: 0;
+        /* Começa fechado */
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        /* Esconde o que não cabe */
+        transition: height 0.4s ease;
+        /* Animação suave */
+        gap: 30px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Classe que o JS vai adicionar para abrir o menu */
+    .nav-links.active {
+        height: 350px;
+        /* Altura quando aberto */
+        border-bottom: 2px solid var(--red-main);
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        /* Links maiores no celular */
+    }
+}

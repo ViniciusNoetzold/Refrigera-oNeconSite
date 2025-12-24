@@ -1,0 +1,222 @@
+/* Cards de Serviços */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.card.service-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gray-medium);
+    transition: 0.4s;
+}
+
+.service-card:hover::before {
+    background: var(--red-main);
+    height: 5px;
+    box-shadow: 0 0 15px var(--red-main);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    background: rgba(31, 42, 68, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--blue-dark);
+    transition: 0.4s;
+}
+
+.service-card:hover .card-icon {
+    background: var(--red-main);
+    color: white;
+    transform: rotateY(180deg);
+    box-shadow: 0 10px 20px rgba(198, 40, 40, 0.3);
+}
+
+.service-card h3 {
+    color: var(--blue-dark);
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.service-card:hover h3 {
+    color: var(--red-main);
+}
+
+.service-list {
+    list-style: none;
+    border-top: 1px solid var(--gray-medium);
+    padding-top: 25px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.service-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 25px;
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.service-list li::before {
+    content: '\f00c';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--red-main);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-size: 0.9rem;
+}
+
+/* Alerta Neon */
+.focus-box {
+    margin-top: 60px;
+    background: #fff0f0;
+    border-radius: 15px;
+    padding: 30px;
+    border: 2px dashed var(--red-main);
+    box-shadow: 0 10px 25px rgba(198, 40, 40, 0.08);
+    text-align: center;
+}
+
+.focus-box h4 {
+    color: var(--red-main);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.focus-box p {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.tag-alert {
+    background: white;
+    color: var(--red-main);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 1px solid #ffcccc;
+    box-shadow: 0 2px 5px rgba(198, 40, 40, 0.1);
+    transition: 0.3s;
+}
+
+.tag-alert:hover {
+    background: var(--red-main);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+}
+
+/* FAQ Grid */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.faq-item {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--gray-medium);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--red-main);
+}
+
+.faq-icon {
+    min-width: 60px;
+    height: 60px;
+    background: #fff0f0;
+    color: var(--red-main);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    transition: 0.3s;
+}
+
+.faq-item:hover .faq-icon {
+    background: var(--red-main);
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+    transform: rotate(10deg);
+}
+
+.faq-content h4 {
+    color: var(--blue-dark);
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.faq-content p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+
+    .services-grid,
+    .faq-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+}

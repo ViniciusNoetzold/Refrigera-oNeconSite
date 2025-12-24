@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* --- UTILITÁRIOS --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-color: var(--gray-light);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+/* --- TIPOGRAFIA --- */
+.sub-title {
+    color: var(--red-main);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    color: var(--blue-dark);
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.center-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Ajuste Geral Responsivo */
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 50px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}

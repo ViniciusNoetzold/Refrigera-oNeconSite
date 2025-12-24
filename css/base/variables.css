@@ -1,0 +1,16 @@
+:root {
+    /* Paleta Principal Atualizada (Neon) */
+    --blue-dark: #1F2A44;
+    --blue-medium: #2F3E6C;
+    --red-main: #ff3333;
+    /* Vermelho Neon Vibrante */
+    --red-hover: #ff6666;
+    /* Vermelho mais claro para hover */
+
+    /* Neutros */
+    --white: #FFFFFF;
+    --gray-light: #F8F9FA;
+    --gray-medium: #E9ECEF;
+    --text-dark: #333333;
+    --text-light: #666666;
+}
